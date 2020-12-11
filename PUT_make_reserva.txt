@@ -9,7 +9,7 @@
 }
 
 {
-	"username":"roger23",
+	"username":"erick37",
         "destino":"Pereira",
         "hotel":"Cafetal Suit",
         "tipo_habitacion":"King",
