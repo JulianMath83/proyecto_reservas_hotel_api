@@ -1,0 +1,19 @@
+{
+	"username":"julian96",
+        "destino":"Amazonas",
+        "hotel":"Puerta Salvaje",
+        "tipo_habitacion":"King",
+        "valor":900000,
+        "fecha_in":"15-may-2021",
+        "fecha_out":"29-jul-2021"
+}
+
+{
+	"username":"roger23",
+        "destino":"Pereira",
+        "hotel":"Cafetal Suit",
+        "tipo_habitacion":"King",
+        "valor":650000,
+        "fecha_in":"1-feb-2021",
+        "fecha_out":"8-feb-2021"
+}
