@@ -1,4 +1,5 @@
 
+from datetime import datetime
 from pydantic import BaseModel
 
 class ReservaOut(BaseModel):
@@ -14,7 +15,6 @@ class ReservaOut(BaseModel):
     estado: str
 
 class ReservaIn(BaseModel):
-    id_reserva: int
     username: str
     destino: str
     hotel: str
@@ -22,10 +22,10 @@ class ReservaIn(BaseModel):
     valor: int
     fecha_in: str
     fecha_out: str
-    estado: str
 
 class ReservaCancelIn(BaseModel):
     id_reserva: int
 
 class ReservaCancelOut(BaseModel):
     id_reserva: int
+    estado: str

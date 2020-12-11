@@ -23,8 +23,6 @@ async def make_reservation(reserva_in: ReservaIn):
     user_in_db = get_user(reserva_in.username)
     if user_in_db == None:
         raise HTTPException(status_code = 404, detail = "El usuario no existe")
-    if reserva_in != None:
-        raise HTTPException(status_code = 404, detail = "La reserva ya existe")
     reserva_in_db = ReservaInDB(**reserva_in.dict())
     reserva_in_db = save_reserva(reserva_in_db)
     reserva_out = ReservaOut(**reserva_in_db.dict(), nombre = user_in_db.nombre)
@@ -38,7 +36,7 @@ async def cancel_reservation(reserva_cancel_in: ReservaCancelIn):
     estado = reserva_in_db.estado
     if estado == "cancelada":
         raise HTTPException(status_code = 404, detail = "La reserva ya está cancelada")
-    reserva_in_db["estado"] = "cancelada"
+    reserva_in_db.estado = "cancelada"
     update_reserva(reserva_in_db)
     reserva_cancel_out = ReservaCancelOut(**reserva_in_db.dict())
     return reserva_cancel_out

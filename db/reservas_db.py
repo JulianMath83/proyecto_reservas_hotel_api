@@ -4,22 +4,22 @@ from pydantic import BaseModel
 from datetime import datetime
 
 class ReservaInDB (BaseModel):
-    id_reserva: int
+    id_reserva: int = 0
     username: str
-    fecha_reserva: str = datetime.now()
+    fecha_reserva: str = datetime.now().strftime('%Y-%m-%d')
     destino: str
     hotel: str
     tipo_habitacion: str
     valor: int
     fecha_in: str
     fecha_out: str
-    estado: str
+    estado: str = "activa"
 
 database_reservas : Dict[int, ReservaInDB]
 database_reservas = {
     1:  ReservaInDB(**{"id_reserva":"1",
                        "username":"roger23",
-                       "fecha_reserva":"30-oct-2020",
+                       "fecha_reserva":"2020-10-30",
                        "destino":"Cartagena",
                        "hotel":"Puerta del Sol",
                        "tipo_habitacion":"Doble",
@@ -30,7 +30,7 @@ database_reservas = {
                        }),
     2:  ReservaInDB(**{"id_reserva":"2",
                        "username":"karen45",
-                       "fecha_reserva":"30-jul-2020",
+                       "fecha_reserva":"2020-7-30",
                        "destino":"Medellin",
                        "hotel":"Ave María",
                        "tipo_habitacion":"Queen",
@@ -41,7 +41,7 @@ database_reservas = {
                        }),
     3:  ReservaInDB(**{"id_reserva":"3",
                        "username":"juan88",
-                       "fecha_reserva":"24-ene-2020",
+                       "fecha_reserva":"2020-1-24",
                        "destino":"Santa Marta",
                        "hotel":"Pescadito",
                        "tipo_habitacion":"King",
@@ -63,8 +63,9 @@ def update_reserva(user_in_db: ReservaInDB):
     return user_in_db
 
 generator = {"id":len(database_reservas)}
+
 def save_reserva(reserva_in_db: ReservaInDB):
     generator["id"] += 1
     reserva_in_db.id_reserva = generator["id"]
-    database_reservas[generator["id"]] = ReservaInDB
+    database_reservas[generator["id"]] = reserva_in_db
     return reserva_in_db
