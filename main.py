@@ -14,7 +14,6 @@ origins = ["http://localhost.tiangolo.com",
             "https://localhost.tiangolo.com",
             "http://localhost",
             "http://localhost:8080",
-            "http://localhost:8081",
             "https://reservas-hotel-app37.herokuapp.com"]
 
 api.add_middleware(CORSMiddleware,
@@ -48,9 +47,9 @@ async def cancel_reservation(reserva_cancel_in: ReservaCancelIn):
     if reserva_in_db == None:
         raise HTTPException(status_code = 404, detail = "La reserva no existe")
     estado = reserva_in_db.estado
-    if estado == "cancelada":
+    if estado == "CANCELADA":
         raise HTTPException(status_code = 404, detail = "La reserva ya está cancelada")
-    reserva_in_db.estado = "cancelada"
+    reserva_in_db.estado = "CANCELADA"
     update_reserva(reserva_in_db)
     reserva_cancel_out = ReservaCancelOut(**reserva_in_db.dict())
     return reserva_cancel_out

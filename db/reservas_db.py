@@ -26,7 +26,7 @@ database_reservas = {
                        "valor":300000,
                        "fecha_in":"15-dic-2020",
                        "fecha_out":"29-dic-2020",
-                       "estado":"cancelada"
+                       "estado":"CANCELADA"
                        }),
     2:  ReservaInDB(**{"id_reserva":"2",
                        "username":"karen45",
@@ -37,7 +37,7 @@ database_reservas = {
                        "valor":800000,
                        "fecha_in":"05-ene-2021",
                        "fecha_out":"10-ene-2021",
-                       "estado":"activa"
+                       "estado":"ACTIVA"
                        }),
     3:  ReservaInDB(**{"id_reserva":"3",
                        "username":"juan88",
@@ -48,7 +48,7 @@ database_reservas = {
                        "valor":650000,
                        "fecha_in":"03-mar-2021",
                        "fecha_out":"04-mar-2021",
-                       "estado":"activa"
+                       "estado":"ACTIVA"
                        }),
 }
 
