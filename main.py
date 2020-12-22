@@ -1,8 +1,10 @@
 
+from models.user_models import UserIn
 from db.reservas_db import get_reserva, save_reserva, update_reserva
 from db.reservas_db import ReservaInDB
-from db.user_db import get_user
+from db.user_db import get_user, UserInDB, save_user, get_keys
 from models.reservas_models import ReservaOut, ReservaIn, ReservaCancelIn, ReservaCancelOut
+from models.user_models import UserInRegistro, UserOutRegistro
 
 from fastapi import FastAPI
 from fastapi import HTTPException
@@ -14,6 +16,7 @@ origins = ["http://localhost.tiangolo.com",
             "https://localhost.tiangolo.com",
             "http://localhost",
             "http://localhost:8080",
+            "http://localhost:8082",
             "https://reservas-hotel-app37.herokuapp.com"]
 
 api.add_middleware(CORSMiddleware,
@@ -53,3 +56,22 @@ async def cancel_reservation(reserva_cancel_in: ReservaCancelIn):
     update_reserva(reserva_in_db)
     reserva_cancel_out = ReservaCancelOut(**reserva_in_db.dict())
     return reserva_cancel_out
+
+@api.post("/user/login/")
+async def login_user(user_in: UserIn):
+    user_in_db = get_user(user_in.username)
+    if user_in_db == None:
+        raise HTTPException(status_code=404, detail="El usuario no existe")
+    if user_in_db.password != user_in.password:
+        raise HTTPException(status_code=403, detail="Error de autenticacion")
+    return  {"Autenticado": True}
+
+@api.put("/user/register/")
+async def register_user(user_in_registro: UserInRegistro):
+    valor = get_keys(user_in_registro.username)
+    if valor:
+        raise HTTPException(status_code = 404, detail = "Usuario no disponible")
+    user_in_db = UserInDB(**user_in_registro.dict())
+    user_in_db = save_user(user_in_registro)
+    user_out = UserOutRegistro(**user_in_db.dict())
+    return user_out

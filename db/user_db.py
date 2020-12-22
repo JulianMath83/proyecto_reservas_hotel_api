@@ -7,7 +7,7 @@ class UserInDB (BaseModel):
     nombre: str
     password: str
 
-database_users = Dict[str, UserInDB]
+database_users : Dict[str, UserInDB]
 database_users = {
     "karen45":  UserInDB(**{"username":"karen45",
                             "nombre":"Karen Daniela",
@@ -32,3 +32,12 @@ def get_user(username: str):
     else:
         return None
 
+def save_user(user_in_db: UserInDB):
+    database_users[user_in_db.username] = user_in_db
+    return user_in_db
+
+def get_keys(user_in: str):
+    if user_in in database_users.keys():
+        return True
+    else:
+        return False

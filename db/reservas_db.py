@@ -13,7 +13,7 @@ class ReservaInDB (BaseModel):
     valor: int
     fecha_in: str
     fecha_out: str
-    estado: str = "activa"
+    estado: str = "ACTIVA"
 
 database_reservas : Dict[int, ReservaInDB]
 database_reservas = {
