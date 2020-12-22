@@ -1,0 +1,14 @@
+{
+	"username":"julian96",
+	"password":"32hi165"
+}
+
+{
+	"username":"karen45",
+	"password":"12345"
+}
+
+{
+	"username":"andresito44",
+	"password":"4dsf688er"
+}

@@ -1,0 +1,11 @@
+{
+	"username":"almeja38",
+	"nombre":"Alejandra González",
+	"password":"321654987"
+}
+
+{
+	"username":"danidani666",
+	"nombre":"Daniel Lozano",
+	"password":"mamoncillo"
+}
